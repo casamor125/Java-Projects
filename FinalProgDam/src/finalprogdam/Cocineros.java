@@ -11,21 +11,21 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * 
- * @author bielc
  * En esta clase mostramos la tabla de cocineros y su plato estrella
  * el cual viene de la tabla de platos.
  * 
+ * @author bielc
  */
 public class Cocineros extends JFrame {
 
     JTable table = new JTable();
     JScrollPane scrollPane = new JScrollPane(table);
-    /**
-     * Le damos los parametros necesarios al JFrame y accedemos al metodo para
-     * cargar la base de datos
-     */
 
+    /**
+     * Constructor de la clase Cocineros.
+     * Le da los parámetros necesarios al JFrame y accede al método para
+     * cargar la base de datos.
+     */
     public Cocineros() {
         setTitle("Tabla de Cocineros");
         setSize(600, 400);
@@ -38,12 +38,13 @@ public class Cocineros extends JFrame {
             e.printStackTrace();
         }
     }
+
     /**
-     * 
-     * @throws SQLException 
-     * Metodo para cargar todos los datos de la tabla de cocineros
+     * Método para cargar todos los datos de la tabla de cocineros
      * dentro de una tabla accediendo a la base de datos y metiendo los datos
-     * en la tabla mediante un while
+     * en la tabla mediante un bucle while.
+     * 
+     * @throws SQLException si ocurre un error de acceso a la base de datos.
      */
     private void cargarCocinerosDesdeDB() throws SQLException {
 

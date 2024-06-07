@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- *
+ * Esta clase solo la utilizamos para hacer visible el menu principal
  * @author bielc
  */
 public class FinalProgDam {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package finalprogdam;
 
 import java.awt.FlowLayout;
@@ -11,8 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,12 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 /**
+ * Clase que usaremos para meter los métodos que serán usados para
+ * añadir nuevos valores dentro de nuestras tablas.
  * 
  * @author bielc
- * Clase que usaremos para meter los metodos que seran usados para
- * añadir nuevos valores dentro de nuestras tablas
  */
 public class Anadir extends JFrame {
 
@@ -37,11 +30,11 @@ public class Anadir extends JFrame {
     
     String[] cocinasPermitidas = {"Italiana", "Japonesa", "China", "Española", "Francesa", "Indio"};
     JComboBox<String> comboCocina = new JComboBox<>(cocinasPermitidas);
-/**
- * AnadirPlato metodo que usamos para añadir platos usando el mismo metodo para
- * sacar informacion de la base de datos solo que en vez de ser un select 
- * usamos un insert into
- */
+
+    /**
+     * Método usado para añadir platos usando una inserción en la base de datos.
+     * Se configura una interfaz gráfica para introducir los datos del nuevo plato.
+     */
     public void AnadirPlato() {
         setTitle("Añadir Plato");
         setSize(400, 200);
@@ -63,8 +56,8 @@ public class Anadir extends JFrame {
         add(panel);
 
         /**
-         * Gestion del actionListener del boton de añadir
-         * donde si que insertamos los valores en la tabla
+         * Gestión del ActionListener del botón de añadir,
+         * donde se insertan los valores en la tabla.
          */
         anadir.addActionListener(new ActionListener() {
             @Override
@@ -99,5 +92,4 @@ public class Anadir extends JFrame {
         });
         setVisible(true);
     }
-
 }

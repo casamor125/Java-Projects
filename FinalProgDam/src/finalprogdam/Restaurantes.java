@@ -18,13 +18,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Implementación gráfica de la tabla Restaurantes y sus platos estrella 
+ * los cuales provienen de la tabla plato. Además, incluye un JTextField 
+ * para filtrar los restaurantes según su precio.
  * 
  * @author bielc
- * Implementacion grafica de la tabla Restaurantes y sus platos estrellas 
- * los cuales provienen de la tabla plato ademas de la implementacion de 
- * un JTextField para filtrar los restaurantes segun su precio
  */
-
 public class Restaurantes extends JFrame {
 
     private JTextField filtro = new JTextField(10);
@@ -33,10 +32,10 @@ public class Restaurantes extends JFrame {
     private JScrollPane scrollPane = new JScrollPane(table);
     
     /**
-     * Le pasamos los parametros necesarios al JFrame y implementamos
-     * un JTextField y un boton que usaremos para filtrar los restaurantes
+     * Constructor de la clase Restaurantes.
+     * Le da los parámetros necesarios al JFrame y añade un JTextField y 
+     * un botón que se usan para filtrar los restaurantes.
      */
-
     public Restaurantes() {
         setTitle("Tabla de Restaurantes");
         setSize(600, 400);
@@ -45,7 +44,7 @@ public class Restaurantes extends JFrame {
         panel.setLayout(new FlowLayout());
         setLocation(950, 425);
 
-        panel.add(new JLabel("Precio Maximo"));
+        panel.add(new JLabel("Precio Máximo"));
         panel.add(filtro);
         panel.add(botonFiltro);
         panel.add(scrollPane);
@@ -53,7 +52,7 @@ public class Restaurantes extends JFrame {
 
         /**
          * Gestor del actionListener donde obtenemos el valor del JTextField
-         * para filtrar por precio los restaurantes
+         * para filtrar por precio los restaurantes.
          */
         botonFiltro.addActionListener(new ActionListener() {
             @Override
@@ -63,7 +62,7 @@ public class Restaurantes extends JFrame {
                     cargarRestaurantesDesdeDB(filtroTexto);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                }catch (NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     System.out.println("El precio debe ser un número.");
                 }
             }
@@ -75,12 +74,13 @@ public class Restaurantes extends JFrame {
             e.printStackTrace();
         }
     }
+
     /**
+     * Método que accede a la base de datos y, mediante un bucle, va cargando 
+     * los datos dentro de la tabla que mostramos.
      * 
-     * @param filtro
-     * @throws SQLException 
-     * metodo que accede a la base de datos y mediante un bucle va cargando 
-     * los datos dentro de la tabla que mostramos
+     * @param filtro El valor del precio máximo para filtrar los restaurantes.
+     * @throws SQLException si ocurre un error de acceso a la base de datos.
      */
     private void cargarRestaurantesDesdeDB(String filtro) throws SQLException {
         String url = "jdbc:mysql://localhost:3306/proyectofinalprogdam";

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package finalprogdam;
 
 import java.awt.FlowLayout;
@@ -20,49 +16,50 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Implementación gráfica de la tabla platos y un botón para abrir
+ * la clase Anadir para añadir nuevos platos.
+ * 
  * @author bielc
- * Implementacion grafica de la tabla platos y un boton para abrir
- * la clase anadir para añadir nuevos platos
  */
-public class Platos extends JFrame{
+public class Platos extends JFrame {
     
-       
- JButton anadir = new JButton ("Añadir Nuevo Plato");
- JTable table = new JTable();
- JScrollPane scrollPane = new JScrollPane(table);
- 
-/**
- * Le damos los parametros necesarios al JFrame ademas de crear un boton
- * para acceder a la clase anadir
- */
-public Platos() {
+    JButton anadir = new JButton("Añadir Nuevo Plato");
+    JTable table = new JTable();
+    JScrollPane scrollPane = new JScrollPane(table);
+
+    /**
+     * Constructor de la clase Platos.
+     * Le da los parámetros necesarios al JFrame además de crear un botón
+     * para acceder a la clase Anadir.
+     */
+    public Platos() {
         setTitle("Tabla de Platos");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocation(950,0);
+        setLocation(950, 0);
 
-       JPanel panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
         panel.add(anadir);
         panel.add(scrollPane);
         add(panel);
-        
-        /**
-         * Action listener que gestiona cuando abrir la pestaña para crear
-         * nuevos platos
-         */
+
         anadir.addActionListener(new ActionListener() {
+            /**
+             * Action listener que gestiona cuándo abrir la pestaña para crear
+             * nuevos platos.
+             * 
+             * @param e El evento de acción que desencadena este método.
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Anadir().AnadirPlato();
                 try {
-            cargarPlatosDesdeDB();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
+                    cargarPlatosDesdeDB();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -71,16 +68,15 @@ public Platos() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-/**
- * 
- * @throws SQLException 
- * metodo que accede a la base de datos y mediante un bucle va cargando 
- * los datos dentro de la tabla que mostramos
- */
-    private void cargarPlatosDesdeDB() throws SQLException {
 
+    /**
+     * Método que accede a la base de datos y mediante un bucle va cargando
+     * los datos dentro de la tabla que mostramos.
+     * 
+     * @throws SQLException si ocurre un error de acceso a la base de datos.
+     */
+    private void cargarPlatosDesdeDB() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/proyectofinalprogdam";
         String usuario = "root";
         String contraseña = "";
@@ -95,7 +91,6 @@ public Platos() {
         model.addColumn("Tipo cocina");
 
         while (rs.next()) {
-
             String nombre = rs.getString("nombre");
             Float precio = rs.getFloat("precio");
             String cocina = rs.getString("cocina");
@@ -103,10 +98,9 @@ public Platos() {
         }
 
         table.setModel(model);
-        
+
         rs.close();
         myst.close();
         conexion.close();
     }
-    
 }
